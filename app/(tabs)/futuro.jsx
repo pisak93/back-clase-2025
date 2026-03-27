@@ -1,32 +1,21 @@
+import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { View,Text } from "react-native";
+import { Text, View } from "react-native";
 import estilos from "../../assets/Styles/Styles";
-import axios from "axios";
+
 
 
 function Futuro(){
-const[mensaje,setMensaje]=useState("vacio");
+const[mensaje,setMensaje]=useState("");
+
+const {mensaje:mensajeParam} = useLocalSearchParams();
 
 useEffect(function(){
-    leerMensajes();
-},[]);
+    if(mensajeParam){
+        setMensaje(mensajeParam);
+    }
+},[mensajeParam]);
 
-function leerMensajes(){
-
-   axios.get("http://192.168.40.15:5000/recibir")
-    .then(function(res){
-        if(res.data.status){
-            console.log(res.data.datos);
-            setMensaje(res.data.datos.mensaje);
-        }
-
-    })
-    .catch(function(err){
-
-        console.log(err);
-        alert("Error al traer los mensajes");
-    })
-}
 
 return(
     <View style={estilos.contenedor}>
