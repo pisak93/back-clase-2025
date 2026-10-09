@@ -7,6 +7,7 @@ const estilos = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
+
   },
 
   titulo: {
@@ -74,6 +75,31 @@ const estilos = StyleSheet.create({
      color:"#fff",
       fontFamily: "monospace",
      textAlign:"center",
+     fontSize:20
+  },
+  textoMensajeFecha:{
+     color:"#fff",
+      fontFamily: "monospace",
+     textAlign:"center",
+     fontSize:15,
+     fontStyle:"italic",
+     marginBottom:10
+  },
+    textoRegistro:{
+     color:"#f47b7b",
+      fontFamily: "monospace",
+     textAlign:"center",
+  },
+   mensajeRegistro:{
+     backgroundColor: "#f47b7b",
+     padding: 10,
+    width:"90%",
+    overflowX:"scroll",
+  maxHeight:200,
+
+  },
+  contenedorFlat:{
+  
   }
 });
 

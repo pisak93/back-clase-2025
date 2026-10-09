@@ -31,6 +31,8 @@ export default function RootLayout() {
 <Tabs.Screen name="index" options={{headerTitle:"Presente", tabBarShowLabel:false,
     tabBarIcon: function(){return <Feather name="home" size={28} color={"#3B0505"} /> } }} />
 <Tabs.Screen name="futuro" options={{headerTitle:"Futuro",href:null}} />
+<Tabs.Screen name="registro" options={{headerTitle:"Historial", tabBarShowLabel:false,
+    tabBarIcon: function(){return <Feather name="book-open" size={28} color={"#3B0505"} /> } }} />
     </Tabs>
   )
 }

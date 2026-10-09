@@ -1,20 +1,42 @@
-import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import { useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
 import { Text, View } from "react-native";
 import estilos from "../../assets/Styles/Styles";
-
+import api from "../../assets/api/axios";
 
 
 function Futuro(){
 const[mensaje,setMensaje]=useState("");
 
-const {mensaje:mensajeParam} = useLocalSearchParams();
-
-useEffect(function(){
-    if(mensajeParam){
-        setMensaje(mensajeParam);
+async function traerUltimoMensaje(){
+    try{
+        const response = await api.get("/mensajes",
+            {
+                params:{
+                    order: "created_at.desc",
+                    limit: 1
+                }
+            }
+        );
+           return response.data[0];
     }
-},[mensajeParam]);
+    catch(error){
+ console.log("Error al traer el mensaje:", error.message);
+    return null;
+    }
+}
+useFocusEffect(
+useCallback(function(){
+  async function cargarMensaje() {
+    const respuesta = await traerUltimoMensaje();
+    console.log(respuesta);
+    setMensaje(respuesta.mensaje);
+  }
+
+  cargarMensaje();
+},[])
+);
+
 
 
 return(

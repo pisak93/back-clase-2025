@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import estilos from "../../assets/Styles/Styles";
+import api from "../../assets/api/axios";
 
 
 import { router } from "expo-router";
@@ -10,12 +11,25 @@ export default function Index() {
   const [mensaje, setMensaje]= useState("");
 
 
-  function enviarMensaje(){
-console.log(mensaje);
+  async function enviarMensaje(){
 
-setTimeout(function(){
-  router.replace("./futuro?mensaje="+mensaje);
+    try{
+      const response = await api.post("/mensajes",
+        {
+          mensaje:mensaje
+        }
+      );
+      setTimeout(function(){
+        console.log(response);
+  router.push("./futuro");
 },500);
+    }
+    catch(error){
+      console.log(error.message);
+
+    }
+
+
   }
 
 
